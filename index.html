@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArenaBT — Beach Tennis Store</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blk:#0a0a0a;--yel:#e8ff5e;--g1:#111;--border:#222;--muted:#666;--white:#fff}
+body{font-family:system-ui,sans-serif;background:var(--blk);color:var(--white);overflow-x:hidden}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,10,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:52px}
+.logo{font-size:20px;font-weight:900;letter-spacing:-1px;cursor:pointer}.logo span{color:var(--yel)}
+.nav-links{display:flex;gap:1.25rem}
+.nav-link{color:#777;font-size:13px;font-weight:500;cursor:pointer;transition:color .2s;background:none;border:none}
+.nav-link:hover,.nav-link.act{color:var(--yel)}
+.cb{background:var(--yel);color:var(--blk);border:none;border-radius:7px;padding:7px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px}
+.bc{background:var(--blk);color:var(--yel);border-radius:50%;width:17px;height:17px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800}
+.hero{height:70vh;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:52px}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,#192200 0%,var(--blk) 70%)}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(#ffffff06 1px,transparent 1px),linear-gradient(90deg,#ffffff06 1px,transparent 1px);background-size:36px 36px;animation:gs 18s linear infinite}
+@keyframes gs{to{background-position:0 36px}}
+.hcont{position:relative;z-index:2;text-align:center;padding:0 1rem}
+.htag{display:inline-block;background:#182000;border:1px solid var(--yel);color:var(--yel);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:1.25rem}
+.htitle{font-size:clamp(36px,7vw,74px);font-weight:900;letter-spacing:-2px;line-height:.95}
+.htitle .y{color:var(--yel)}
+.hsub{color:#777;font-size:clamp(13px,1.8vw,16px);margin-top:1.25rem}
+.hctas{display:flex;gap:10px;justify-content:center;margin-top:1.5rem}
+.bp{background:var(--yel);color:var(--blk);border:none;border-radius:9px;padding:11px 22px;font-size:14px;font-weight:700;cursor:pointer}
+.bs{background:transparent;color:var(--white);border:1px solid var(--border);border-radius:9px;padding:11px 22px;font-size:14px;font-weight:600;cursor:pointer}
+.fr{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1}
+.fr div{position:absolute;opacity:.06;animation:fl 7s ease-in-out infinite}
+.fr div:nth-child(1){top:12%;left:6%}.fr div:nth-child(2){top:20%;right:8%;animation-delay:2s}.fr div:nth-child(3){bottom:18%;left:12%;animation-delay:4s}.fr div:nth-child(4){bottom:25%;right:6%;animation-delay:6s}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-18px) rotate(5deg)}}
+.hscroll{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#444;font-size:11px;letter-spacing:2px;text-transform:uppercase;animation:bb 2s ease-in-out infinite;z-index:2}
+@keyframes bb{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
+.ticker{background:#0d0d0d;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.75rem 0;overflow:hidden}
+.ttrack{display:flex;gap:1.5rem;animation:tk 22s linear infinite;width:max-content}
+@keyframes tk{to{transform:translateX(-50%)}}
+.titem{display:flex;align-items:center;gap:7px;color:#444;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.tdot{width:3px;height:3px;border-radius:50%;background:var(--yel)}
+.page{display:none}.page.act{display:block}
+.sec{padding:4rem 1.5rem;max-width:1200px;margin:0 auto}
+.slabel{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--yel);margin-bottom:.5rem}
+.stitle{font-size:clamp(24px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:.4rem}
+.ssub{color:var(--muted);font-size:14px;margin-bottom:2rem}
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-bottom:2.5rem}
+.brand-logo-btn{background:var(--g1);border:1px solid var(--border);border-radius:10px;padding:.75rem .5rem;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .2s}
+.brand-logo-btn:hover,.brand-logo-btn.act{border-color:var(--yel);background:#182000}
+.brand-logo-btn img{width:36px;height:36px;object-fit:contain}
+.brand-logo-btn span{font-size:10px;font-weight:700;color:#777;letter-spacing:.5px;text-transform:uppercase}
+.brand-logo-btn.act span{color:var(--yel)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.875rem}
+.pcard{background:var(--g1);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .15s;perspective:800px}
+.pcard:hover{border-color:#444;transform:translateY(-2px)}
+.pcard-inner{transition:transform .1s ease-out;transform-style:preserve-3d}
+.pimg{height:160px;display:flex;align-items:center;justify-content:center;background:#0d0d0d;position:relative;overflow:hidden}
+.pshine{position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(232,255,94,.1) 0%,transparent 55%);pointer-events:none;opacity:0;transition:opacity .2s}
+.pcard:hover .pshine{opacity:1}
+.pbadge{position:absolute;top:8px;left:8px;background:rgba(232,255,94,.12);border:1px solid rgba(232,255,94,.25);color:var(--yel);font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase}
+.phot{position:absolute;top:8px;right:8px;background:var(--yel);color:var(--blk);font-size:9px;font-weight:800;padding:2px 6px;border-radius:4px}
+.pbody{padding:.875rem}
+.pname{font-size:13px;font-weight:700;margin-bottom:3px}
+.pdesc{font-size:11px;color:#555;line-height:1.4;margin-bottom:10px}
+.pfoot{display:flex;align-items:center;justify-content:space-between}
+.pprice{font-size:16px;font-weight:800;color:var(--yel)}
+.padd{background:var(--yel);color:var(--blk);border:none;border-radius:7px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer}
+.pstars{font-size:10px;color:#444;margin-bottom:5px}
+.pstars .s{color:#e8b800}
+.prod-page{padding-top:52px;min-height:100vh}
+.prod-inner{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+.prod-back{background:none;border:none;color:#666;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:5px;margin-bottom:1.5rem;padding:0}
+.prod-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:600px){.prod-layout{grid-template-columns:1fr}}
+.prod-img-box{background:#0d0d0d;border:1px solid var(--border);border-radius:16px;height:300px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.prod-brand-badge{position:absolute;top:12px;left:12px;background:rgba(232,255,94,.12);border:1px solid rgba(232,255,94,.25);color:var(--yel);font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px;text-transform:uppercase}
+.prod-hot{position:absolute;top:12px;right:12px;background:var(--yel);color:var(--blk);font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px}
+.prod-brand{font-size:11px;font-weight:700;color:var(--yel);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.prod-name{font-size:26px;font-weight:900;letter-spacing:-1px;margin-bottom:.5rem}
+.prod-stars{font-size:13px;color:#444;margin-bottom:1rem}
+.prod-stars .s{color:#e8b800}
+.prod-desc{font-size:14px;color:#888;line-height:1.6;margin-bottom:1.25rem}
+.prod-specs{background:#0d0d0d;border-radius:10px;padding:1rem;margin-bottom:1.25rem}
+.prod-specs h4{font-size:11px;font-weight:700;color:#555;letter-spacing:1px;text-transform:uppercase;margin-bottom:.75rem}
+.spec-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid #1a1a1a}
+.spec-row:last-child{border:none}
+.spec-row span:first-child{color:#666}
+.spec-row span:last-child{font-weight:600}
+.prod-price{font-size:32px;font-weight:900;color:var(--yel);margin-bottom:1rem}
+.prod-price sub{font-size:14px;color:#666;font-weight:400}
+.prod-actions{display:flex;gap:10px}
+.btn-add-big{flex:1;background:var(--yel);color:var(--blk);border:none;border-radius:10px;padding:13px;font-size:15px;font-weight:800;cursor:pointer}
+.btn-wa{background:#25d366;color:#fff;border:none;border-radius:10px;padding:13px 16px;font-size:15px;cursor:pointer}
+.tbox{background:var(--g1);border:1px solid var(--border);border-radius:14px;padding:1.5rem;max-width:580px;margin:0 auto}
+.tinrow{display:flex;gap:8px;margin-bottom:1.5rem}
+.tin{flex:1;background:#0d0d0d;border:1px solid #333;border-radius:9px;padding:10px 14px;color:var(--white);font-size:14px}
+.tin::placeholder{color:#444}
+.tbtn{background:var(--yel);color:var(--blk);border:none;border-radius:9px;padding:10px 18px;font-weight:700;cursor:pointer}
+.tsteps{display:flex;flex-direction:column}
+.tstep{display:flex;gap:14px;padding:.875rem 0;position:relative}
+.tstep:not(:last-child)::after{content:"";position:absolute;left:13px;top:44px;width:2px;height:calc(100% - 12px);background:var(--border)}
+.sdot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;z-index:1}
+.sdot.done{background:#182000;border:2px solid var(--yel);color:var(--yel)}
+.sdot.cur{background:var(--yel);border:2px solid var(--yel);color:var(--blk)}
+.sdot.pend{background:var(--g1);border:2px solid var(--border);color:#444}
+.sinfo{flex:1;padding-top:2px}
+.stitle2{font-size:13px;font-weight:600;margin-bottom:2px}
+.tstep.done .stitle2,.tstep.cur .stitle2{color:var(--yel)}.tstep.pend .stitle2{color:#444}
+.sdate{font-size:11px;color:#555}
+.pmethods{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:1.5rem}
+.pmc{background:var(--g1);border:1px solid var(--border);border-radius:12px;padding:1.1rem;cursor:pointer;transition:all .2s;text-align:center}
+.pmc:hover,.pmc.sel{border-color:var(--yel);background:#182000}
+.pmico{width:40px;height:40px;border-radius:8px;background:#1a1a1a;border:1px solid var(--border);margin:0 auto 8px;display:flex;align-items:center;justify-content:center}
+.pmname{font-size:13px;font-weight:700}.pmdesc{font-size:11px;color:#555;margin-top:3px}
+.pform{background:var(--g1);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+.pform h3{font-size:15px;font-weight:700;margin-bottom:.875rem}
+.fg{margin-bottom:10px}
+.fg label{display:block;font-size:11px;font-weight:700;color:#555;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.fi{width:100%;background:#0d0d0d;border:1px solid #333;border-radius:8px;padding:9px 12px;color:var(--white);font-size:13px}
+.fi::placeholder{color:#444}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.cc{background:var(--g1);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;gap:10px}
+.cc:hover{border-color:var(--yel);transform:translateY(-2px)}
+.cico{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.cname{font-size:15px;font-weight:700}.cdesc{font-size:12px;color:#555;line-height:1.4}.cact{font-size:12px;color:var(--yel);font-weight:600;margin-top:auto}
+.wa-bg{background:#0d2d18}.ig-bg{background:#2d1a2d}.em-bg{background:#1a1a2d}.ph-bg{background:#2d1a0d}
+.covl{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:300;display:flex;justify-content:flex-end}
+.cpanel{background:var(--g1);width:360px;max-width:100vw;height:100%;display:flex;flex-direction:column;border-left:1px solid var(--border)}
+.chdr{padding:1.1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.chdr h2{font-size:17px;font-weight:700}
+.cx{background:none;border:none;color:#555;font-size:20px;cursor:pointer}
+.cbody{flex:1;overflow-y:auto;padding:.875rem 1.25rem}
+.citem{display:flex;gap:10px;padding:.875rem 0;border-bottom:1px solid #1a1a1a}
+.ciimg{background:#0d0d0d;border-radius:8px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ciinfo{flex:1}.ciname{font-size:13px;font-weight:600}.cibrand{font-size:11px;color:#444;margin-bottom:3px}.ciprice{font-size:13px;font-weight:700;color:var(--yel)}
+.ciqty{display:flex;align-items:center;gap:7px;margin-top:5px}
+.qb{background:#1a1a1a;border:1px solid #333;border-radius:5px;width:24px;height:24px;color:var(--white);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.qn{font-size:13px;font-weight:600;min-width:18px;text-align:center}
+.crm{background:none;border:none;color:#444;font-size:11px;cursor:pointer;margin-left:auto;align-self:flex-start}
+.cempty{text-align:center;padding:2.5rem 1rem;color:#444;font-size:14px}
+.cfoot{padding:1.1rem 1.25rem;border-top:1px solid var(--border)}
+.ctrow{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:.875rem}
+.ctrow span:last-child{color:var(--yel)}
+.chkbtn{width:100%;background:var(--yel);color:var(--blk);border:none;border-radius:9px;padding:12px;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:7px}
+.wabtn{width:100%;background:#25d366;color:#fff;border:none;border-radius:9px;padding:10px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.chkform{padding:1.25rem;overflow-y:auto;height:100%}
+.chkform h2{font-size:17px;font-weight:700;margin-bottom:1.25rem}
+.backlink{background:none;border:none;color:#555;font-size:13px;cursor:pointer;padding:0;margin-bottom:1.25rem;display:flex;align-items:center;gap:4px}
+.osbox{background:#0d0d0d;border-radius:9px;padding:.875rem;margin-bottom:1rem}
+.ostitle{font-size:10px;font-weight:700;color:#444;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.ositem{display:flex;justify-content:space-between;font-size:12px;padding:2px 0;color:#777}
+.ostotal{display:flex;justify-content:space-between;font-size:14px;font-weight:700;border-top:1px solid #222;margin-top:7px;padding-top:7px}
+.ostotal span:last-child{color:var(--yel)}
+.placebtn{width:100%;background:var(--yel);color:var(--blk);border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;margin-top:.875rem}
+.sview{padding:1.5rem;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.sico{font-size:56px;margin-bottom:.875rem}
+.sview h2{font-size:20px;font-weight:800;margin-bottom:.5rem}
+.sview p{color:#666;margin-bottom:1.25rem;line-height:1.5;font-size:13px}
+.contbtn{background:var(--yel);color:var(--blk);border:none;border-radius:9px;padding:11px 22px;font-size:14px;font-weight:700;cursor:pointer}
+footer{background:#050505;border-top:1px solid #1a1a1a;padding:2.5rem 1.5rem;text-align:center}
+.flogo{font-size:24px;font-weight:900;letter-spacing:-1px;margin-bottom:.4rem}
+.flogo span{color:var(--yel)}
+footer p{color:#333;font-size:12px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+  const {useState,useRef,useMemo}=React;
+function RacketSVG({color,size}){color=color||"#e8ff5e";size=size||90;return React.createElement("svg",{width:size,height:size,viewBox:"0 0 100 120",fill:"none"},React.createElement("ellipse",{cx:50,cy:44,rx:32,ry:38,fill:color,opacity:.13,stroke:color,strokeWidth:2.5}),React.createElement("line",{x1:50,y1:6,x2:50,y2:82,stroke:color,strokeWidth:1.2,opacity:.5}),React.createElement("line",{x1:18,y1:44,x2:82,y2:44,stroke:color,strokeWidth:1.2,opacity:.5}),React.createElement("line",{x1:25,y1:20,x2:75,y2:68,stroke:color,strokeWidth:.8,opacity:.3}),React.createElement("line",{x1:75,y1:20,x2:25,y2:68,stroke:color,strokeWidth:.8,opacity:.3}),React.createElement("rect",{x:46,y:82,width:8,height:28,rx:4,fill:color,opacity:.8}),React.createElement("ellipse",{cx:50,cy:44,rx:32,ry:38,stroke:color,strokeWidth:2,fill:"none"}));}
+function PixIcon(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("path",{d:"M12 2L7 7H4v3l-2 2 2 2v3h3l5 5 5-5h3v-3l2-2-2-2V7h-3L12 2z",stroke:"#e8ff5e",strokeWidth:1.5,strokeLinejoin:"round"}),React.createElement("path",{d:"M9 12l2 2 4-4",stroke:"#e8ff5e",strokeWidth:1.5,strokeLinecap:"round"}));}
+function CardIcon(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("rect",{x:2,y:5,width:20,height:14,rx:2,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("line",{x1:2,y1:10,x2:22,y2:10,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("rect",{x:5,y:14,width:4,height:2,rx:.5,fill:"#e8ff5e"}));}
+function DebitIcon(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("rect",{x:2,y:5,width:20,height:14,rx:2,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("line",{x1:2,y1:10,x2:22,y2:10,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("circle",{cx:17,cy:15,r:2,stroke:"#e8ff5e",strokeWidth:1.5}));}
+function BoletoIcon(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("rect",{x:3,y:3,width:18,height:18,rx:2,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("line",{x1:7,y1:7,x2:7,y2:17,stroke:"#e8ff5e",strokeWidth:2}),React.createElement("line",{x1:10,y1:7,x2:10,y2:17,stroke:"#e8ff5e",strokeWidth:1}),React.createElement("line",{x1:13,y1:7,x2:13,y2:17,stroke:"#e8ff5e",strokeWidth:2}),React.createElement("line",{x1:16,y1:7,x2:16,y2:17,stroke:"#e8ff5e",strokeWidth:1}));}
+const BRANDS=["Todas","Mormaii","Heroes","Vaib","Drop Shot","Joog","Ama Sport","Nox","Zand","Fobel","Minimalist","Kona"];
+const RACKET_COLORS={Mormaii:"#4fc3f7",Heroes:"#f06292",Vaib:"#aed581","Drop Shot":"#ff8a65",Joog:"#ce93d8","Ama Sport":"#4db6ac",Nox:"#e8ff5e",Zand:"#ffd54f",Fobel:"#80deea",Minimalist:"#fff",Kona:"#ff7043"};
+const PRODUCTS=[
+{id:1,brand:"Mormaii",name:"Vitória Marchesini 2025",desc:"Carbono 3K, parceria com a atleta Vitória Marchesini.",price:890,stars:5,hot:true,material:"Carbono 3K",peso:"320g",nivel:"Avançado",img:"/raquetes/mormaii-vitoria-2025.png"},
+{id:2,brand:"Mormaii",name:"Areia Grossa Carbon 2025",desc:"Carbono 12K com textura de areia grossa para máximo spin.",price:720,stars:5,hot:false,material:"Carbono 12K",peso:"325g",nivel:"Avançado",img:"/raquetes/mormaii-areia-2025.png"},
+{id:3,brand:"Mormaii",name:"Pro Carbon BT 2024",desc:"Linha profissional com espuma EVA Tech de alta densidade.",price:580,stars:4,hot:false,material:"Carbono 3K",peso:"330g",nivel:"Intermediário",img:"/raquetes/mormaii-pro-2024.png"},
+{id:4,brand:"Mormaii",name:"Beach Glass 2024",desc:"Fibra de vidro premium para iniciantes e intermediários.",price:320,stars:4,hot:false,material:"Fibra de vidro",peso:"340g",nivel:"Iniciante",img:"/raquetes/mormaii-glass-2024.png"},
+{id:5,brand:"Heroes",name:"Senna Ed. Limitada 2025",desc:"Homenagem a Ayrton Senna. Carbono 3K, sistema Predator.",price:3800,stars:5,hot:true,material:"Carbono 3K",peso:"320g",nivel:"Profissional",img:"/raquetes/heroes-senna-2025.png"},
+{id:6,brand:"Heroes",name:"Fierce Cappelletti 2026",desc:"Desenvolvida com o campeão Michele Cappelletti.",price:1290,stars:5,hot:true,material:"Carbono 12K",peso:"318g",nivel:"Profissional",img:"/raquetes/heroes-fierce-2026.png"},
+{id:7,brand:"Heroes",name:"Show 2025 Ed. Limitada",desc:"Design bicolor preto e rosa, carbono de alto desempenho.",price:2950,stars:5,hot:false,material:"Carbono",peso:"322g",nivel:"Avançado",img:"/raquetes/heroes-show-2025.png"},
+{id:8,brand:"Heroes",name:"Mjolnir Carbon 2024",desc:"Inspirada no martelo de Thor. Design preto e vermelho.",price:1100,stars:4,hot:false,material:"Carbono",peso:"328g",nivel:"Avançado",img:"/raquetes/heroes-mjolnir-2024.png"},
+{id:9,brand:"Vaib",name:"Predator Pro 2025",desc:"Carbono 12K, face texturizada para spin e smash.",price:750,stars:5,hot:true,material:"Carbono 12K",peso:"325g",nivel:"Avançado",img:"/raquetes/vaib-predator-2025.png"},
+{id:10,brand:"Vaib",name:"Storm Control 2025",desc:"Equilíbrio entre ataque e defesa com EVA Soft.",price:590,stars:4,hot:false,material:"Carbono 3K",peso:"330g",nivel:"Intermediário",img:"/raquetes/vaib-storm-2025.png"},
+{id:11,brand:"Vaib",name:"Coast BT 2024",desc:"Resistente à maresia, grip especial para alta umidade.",price:420,stars:4,hot:false,material:"Carbono + Vidro",peso:"335g",nivel:"Intermediário",img:"/raquetes/vaib-coast-2024.png"},
+{id:12,brand:"Vaib",name:"Entry Glass",desc:"Entrada de linha com fibra de vidro.",price:260,stars:3,hot:false,material:"Fibra de vidro",peso:"345g",nivel:"Iniciante",img:"/raquetes/vaib-entry.png"},
+{id:13,brand:"Drop Shot",name:"Conqueror 12.0 BT",desc:"Carbono 24K ultra-rígido. Uma das melhores do mundo.",price:980,stars:5,hot:true,material:"Carbono 24K",peso:"315g",nivel:"Profissional",img:"/raquetes/dropshot-conqueror12.png"},
+{id:14,brand:"Drop Shot",name:"Explorer 6.0 BT",desc:"Carbono 3K com tecnologia 3D Face. Escolha de atleta.",price:560,stars:5,hot:true,material:"Carbono 3K",peso:"325g",nivel:"Intermediário",img:"/raquetes/dropshot-explorer6.png"},
+{id:15,brand:"Drop Shot",name:"Conqueror 13 Comfort",desc:"Linha Pro Competition com EVA Comfort.",price:850,stars:5,hot:false,material:"Carbono 12K",peso:"320g",nivel:"Profissional",img:"/raquetes/dropshot-conqueror13.png"},
+{id:16,brand:"Drop Shot",name:"Renegade Control",desc:"Potência intermediária com face rugosa para efeitos.",price:380,stars:4,hot:false,material:"Carbono + Vidro",peso:"332g",nivel:"Intermediário",img:"/raquetes/dropshot-renegade.png"},
+{id:17,brand:"Joog",name:"Thunder Black Carbon 2025",desc:"Moldura full carbono com design preto total.",price:760,stars:5,hot:true,material:"Carbono 12K",peso:"322g",nivel:"Avançado",img:"/raquetes/joog-thunder-2025.png"},
+{id:18,brand:"Joog",name:"Night Pro 2025",desc:"Design dark premium com face de areia de sílica.",price:890,stars:5,hot:false,material:"Carbono 3K",peso:"320g",nivel:"Avançado",img:"/raquetes/joog-night-2025.png"},
+{id:19,brand:"Joog",name:"Breeze Lite 2024",desc:"A mais leve da Joog. Para jogadores rápidos.",price:410,stars:4,hot:false,material:"Carbono + Vidro",peso:"315g",nivel:"Intermediário",img:"/raquetes/joog-breeze-2024.png"},
+{id:20,brand:"Joog",name:"Street BT",desc:"Qualidade Joog por um preço acessível.",price:290,stars:3,hot:false,material:"Fibra de vidro",peso:"340g",nivel:"Iniciante",img:"/raquetes/joog-street.png"},
+{id:21,brand:"Ama Sport",name:"Kronos 2026",desc:"Mais novo lançamento. Carbono de última geração.",price:2599,stars:5,hot:true,material:"Carbono 24K",peso:"316g",nivel:"Profissional",img:"/raquetes/ama-kronos-2026.png"},
+{id:22,brand:"Ama Sport",name:"Atlas Pro 2025",desc:"Carbono 12K com EVA Tech de alta reação.",price:980,stars:5,hot:false,material:"Carbono 12K",peso:"320g",nivel:"Avançado",img:"/raquetes/ama-atlas-2025.png"},
+{id:23,brand:"Ama Sport",name:"Lotus Carbon 2024",desc:"Visual minimalista para jogadoras avançadas.",price:699,stars:4,hot:false,material:"Carbono 3K",peso:"318g",nivel:"Avançado",img:"/raquetes/ama-lotus-2024.png"},
+{id:24,brand:"Ama Sport",name:"Flow Glass 2024",desc:"Fibra de vidro para quem quer evoluir rápido.",price:350,stars:4,hot:false,material:"Fibra de vidro",peso:"338g",nivel:"Iniciante",img:"/raquetes/ama-flow-2024.png"},
+{id:25,brand:"Nox",name:"NG17 2026 by Nico Gianotti",desc:"Raquete do campeão Nico Gianotti para 2026.",price:1290,stars:5,hot:true,material:"Carbono 18K",peso:"310g",nivel:"Profissional",img:"/raquetes/nox-ng17-2026.png"},
+{id:26,brand:"Nox",name:"V10 2026 by Vero Casadei",desc:"Lançamento 2026. Controle e spin para o jogo feminino.",price:1190,stars:5,hot:true,material:"Carbono 12K",peso:"318g",nivel:"Profissional",img:"/raquetes/nox-v10-2026.png"},
+{id:27,brand:"Nox",name:"Varadero 2026",desc:"Modelo versátil da nova linha 2026 da Nox.",price:890,stars:5,hot:false,material:"Carbono 12K",peso:"322g",nivel:"Avançado",img:"/raquetes/nox-varadero-2026.png"},
+{id:28,brand:"Nox",name:"Sand Pro 2025",desc:"Face de areia de sílica. Clássico da Nox.",price:680,stars:4,hot:false,material:"Carbono 3K",peso:"325g",nivel:"Intermediário",img:"/raquetes/nox-sand-2025.png"},
+{id:29,brand:"Zand",name:"Z Jump 2026",desc:"Lançamento 2026. Alta performance com detalhes em neon.",price:890,stars:5,hot:true,material:"Carbono 12K",peso:"320g",nivel:"Avançado",img:"/raquetes/zand-zjump-2026.png"},
+{id:30,brand:"Zand",name:"Desert Storm Pro 2025",desc:"Perfil aerodinâmico para dias de vento forte.",price:650,stars:5,hot:false,material:"Carbono 3K",peso:"325g",nivel:"Avançado",img:"/raquetes/zand-desert-2025.png"},
+{id:31,brand:"Zand",name:"Wave Rider 2024",desc:"Grip reforçado para partidas longas no calor.",price:420,stars:4,hot:false,material:"Carbono + Vidro",peso:"332g",nivel:"Intermediário",img:"/raquetes/zand-wave-2024.png"},
+{id:32,brand:"Zand",name:"Oasis Glass",desc:"Leveza e frescor para treinos longos.",price:290,stars:3,hot:false,material:"Fibra de vidro",peso:"342g",nivel:"Iniciante",img:"/raquetes/zand-oasis.png"},
+{id:33,brand:"Fobel",name:"Speedster Carbon 2025",desc:"Aerodinâmica otimizada. Mais vendida da Fobel em 2025.",price:580,stars:5,hot:true,material:"Carbono 3K",peso:"323g",nivel:"Avançado",img:"/raquetes/fobel-speedster-2025.png"},
+{id:34,brand:"Fobel",name:"Nitro Pro 2025",desc:"Carbono 12K para smashes devastadores.",price:720,stars:5,hot:false,material:"Carbono 12K",peso:"320g",nivel:"Avançado",img:"/raquetes/fobel-nitro-2025.png"},
+{id:35,brand:"Fobel",name:"Air Lite 2024",desc:"A mais leve da linha Fobel.",price:390,stars:4,hot:false,material:"Carbono + Vidro",peso:"313g",nivel:"Intermediário",img:"/raquetes/fobel-air-2024.png"},
+{id:36,brand:"Fobel",name:"Classic Pro",desc:"Confiabilidade e consistência em todos os golpes.",price:295,stars:4,hot:false,material:"Fibra de vidro",peso:"338g",nivel:"Iniciante",img:"/raquetes/fobel-classic.png"},
+{id:37,brand:"Minimalist",name:"Form Pro Carbon 2025",desc:"Geometria precisa. Design totalmente branco.",price:750,stars:5,hot:true,material:"Carbono 12K",peso:"318g",nivel:"Avançado",img:"/raquetes/minimalist-form-2025.png"},
+{id:38,brand:"Minimalist",name:"One 2025",desc:"O clássico da Minimalist. Design limpo.",price:599,stars:5,hot:false,material:"Carbono 3K",peso:"322g",nivel:"Avançado",img:"/raquetes/minimalist-one-2025.png"},
+{id:39,brand:"Minimalist",name:"Zero Ultra",desc:"A mais leve da linha Minimalist.",price:520,stars:4,hot:false,material:"Carbono 3K",peso:"310g",nivel:"Intermediário",img:"/raquetes/minimalist-zero.png"},
+{id:40,brand:"Minimalist",name:"Base Glass",desc:"O essencial do beach tennis sem excessos.",price:340,stars:3,hot:false,material:"Fibra de vidro",peso:"340g",nivel:"Iniciante",img:"/raquetes/minimalist-base.png"},
+{id:41,brand:"Kona",name:"Sunset Carbon 2025",desc:"Carbono premium com visual pôr-do-sol havaiano.",price:720,stars:5,hot:true,material:"Carbono 12K",peso:"320g",nivel:"Avançado",img:"/raquetes/kona-sunset-2025.png"},
+{id:42,brand:"Kona",name:"Hawaiian Pro 2025",desc:"Estilo Hawaii nas quadras. Carbono 3K.",price:545,stars:4,hot:false,material:"Carbono 3K",peso:"326g",nivel:"Intermediário",img:"/raquetes/kona-hawaiian-2025.png"},
+{id:43,brand:"Kona",name:"Pipeline Carbon 2024",desc:"Curvatura especial para máximo controle.",price:460,stars:4,hot:false,material:"Carbono + Vidro",peso:"330g",nivel:"Intermediário",img:"/raquetes/kona-pipeline-2024.png"},
+{id:44,brand:"Kona",name:"Aloha Glass",desc:"Para quem leva o esporte com leveza e alegria.",price:280,stars:3,hot:false,material:"Fibra de vidro",peso:"342g",nivel:"Iniciante",img:"/raquetes/kona-aloha.png"},
+];
+function Stars({n}){return React.createElement("div",{className:"pstars"},[1,2,3,4,5].map(function(i){return React.createElement("span",{key:i,className:i<=n?"s":""},"★");}));}
+function ProdImg({p,size}){size=size||80;var[err,setErr]=useState(false);var col=RACKET_COLORS[p.brand]||"#e8ff5e";if(err||!p.img)return React.createElement(RacketSVG,{color:col,size:size});return React.createElement("img",{src:p.img,alt:p.name,style:{width:size,height:size,objectFit:"contain"},onError:function(){setErr(true);}});}
+function RacketCard({p,onAdd,onOpen}){var ref=useRef(null);var eref=useRef(null);function mm(e){var r=ref.current.getBoundingClientRect();var rx=((e.clientY-(r.top+r.height/2))/r.height)*10;var ry=((e.clientX-(r.left+r.width/2))/r.width)*-10;ref.current.querySelector('.pcard-inner').style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';if(eref.current)eref.current.style.transform='translateZ(25px) scale(1.08)';var px=((e.clientX-r.left)/r.width)*100,py=((e.clientY-r.top)/r.height)*100;ref.current.querySelector('.pshine').style.setProperty('--mx',px+'%');ref.current.querySelector('.pshine').style.setProperty('--my',py+'%');}function ml(){ref.current.querySelector('.pcard-inner').style.transform='';if(eref.current)eref.current.style.transform='';}function tm(e){var t=e.touches[0];var r=ref.current.getBoundingClientRect();var rx=((t.clientY-(r.top+r.height/2))/r.height)*8;var ry=((t.clientX-(r.left+r.width/2))/r.width)*-8;ref.current.querySelector('.pcard-inner').style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';if(eref.current)eref.current.style.transform='translateZ(20px) scale(1.06)';}function te(){ref.current.querySelector('.pcard-inner').style.transform='';if(eref.current)eref.current.style.transform='';}return React.createElement("div",{className:"pcard",ref:ref,onMouseMove:mm,onMouseLeave:ml,onTouchMove:tm,onTouchEnd:te,onClick:function(){onOpen(p);}},React.createElement("div",{className:"pcard-inner"},React.createElement("div",{className:"pimg"},React.createElement("div",{className:"pshine"}),React.createElement("span",{className:"pbadge"},p.brand),p.hot&&React.createElement("span",{className:"phot"},"🔥 TOP"),React.createElement("div",{ref:eref,style:{transition:"transform .1s ease-out"}},React.createElement(ProdImg,{p:p,size:90}))),React.createElement("div",{className:"pbody"},React.createElement(Stars,{n:p.stars}),React.createElement("div",{className:"pname"},p.name),React.createElement("div",{className:"pdesc"},p.desc.slice(0,68)+(p.desc.length>68?"…":"")),React.createElement("div",{className:"pfoot"},React.createElement("div",{className:"pprice"},"R$"+p.price.toLocaleString('pt-BR')),React.createElement("button",{className:"padd",onClick:function(e){e.stopPropagation();onAdd(p);}},"+ Add")))));}
+function ProductPage({p,onBack,onAdd}){var imgRef=useRef(null);var rRef=useRef(null);function mm(e){var r=imgRef.current.getBoundingClientRect();var px=((e.clientX-r.left)/r.width)*100,py=((e.clientY-r.top)/r.height)*100;imgRef.current.querySelector('.pshine').style.setProperty('--mx',px+'%');imgRef.current.querySelector('.pshine').style.setProperty('--my',py+'%');imgRef.current.querySelector('.pshine').style.opacity=1;if(rRef.current){var rx=((e.clientY-(r.top+r.height/2))/r.height)*8;var ry=((e.clientX-(r.left+r.width/2))/r.width)*-8;rRef.current.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg) scale(1.05)';}}function ml(){if(imgRef.current)imgRef.current.querySelector('.pshine').style.opacity=0;if(rRef.current)rRef.current.style.transform='';}var inst=Math.ceil(p.price/10);return React.createElement("div",{className:"prod-page"},React.createElement("div",{className:"prod-inner"},React.createElement("button",{className:"prod-back",onClick:onBack},"← Voltar ao catálogo"),React.createElement("div",{className:"prod-layout"},React.createElement("div",null,React.createElement("div",{className:"prod-img-box",ref:imgRef,onMouseMove:mm,onMouseLeave:ml},React.createElement("div",{className:"pshine"}),React.createElement("span",{className:"prod-brand-badge"},p.brand),p.hot&&React.createElement("span",{className:"prod-hot"},"🔥 Mais vendida"),React.createElement("div",{ref:rRef,style:{transition:"transform .15s ease-out"}},React.createElement(ProdImg,{p:p,size:160})))),React.createElement("div",null,React.createElement("div",{className:"prod-brand"},p.brand),React.createElement("div",{className:"prod-name"},p.name),React.createElement("div",{className:"prod-stars"},[1,2,3,4,5].map(function(i){return React.createElement("span",{key:i,className:i<=p.stars?"s":""},"★");})),React.createElement("div",{className:"prod-desc"},p.desc),React.createElement("div",{className:"prod-specs"},React.createElement("h4",null,"Especificações"),[["Material",p.material],["Peso",p.peso],["Nível",p.nivel],["Garantia","30 dias"]].map(function(kv){return React.createElement("div",{key:kv[0],className:"spec-row"},React.createElement("span",null,kv[0]),React.createElement("span",null,kv[1]));})),React.createElement("div",{className:"prod-price"},"R$"+p.price.toLocaleString('pt-BR'),React.createElement("sub",null," ou 10x de R$"+inst.toLocaleString('pt-BR')+" s/ juros")),React.createElement("div",{className:"prod-actions"},React.createElement("button",{className:"btn-add-big",onClick:function(){onAdd(p);}},"Adicionar ao carrinho"),React.createElement("button",{className:"btn-wa",onClick:function(){window.open('https://wa.me/5584900000000?text='+encodeURIComponent('Olá! Interesse na '+p.brand+' '+p.name),'_blank');}},"💬"))))));}
+  function App(){
+var[page,setPage]=useState("home");
+var[brand,setBrand]=useState("Todas");
+var[cart,setCart]=useState([]);
+var[cartOpen,setCartOpen]=useState(false);
+var[cartView,setCartView]=useState("cart");
+var[payM,setPayM]=useState("pix");
+var[track,setTrack]=useState("");
+var[tracking,setTracking]=useState(false);
+var[prod,setProd]=useState(null);
+var[form,setForm]=useState({nome:"",email:"",tel:"",cep:"",rua:"",num:"",cidade:""});
+var filtered=useMemo(function(){return brand==="Todas"?PRODUCTS:PRODUCTS.filter(function(p){return p.brand===brand;});},[ brand]);
+var totalItems=cart.reduce(function(s,i){return s+i.qty;},0);
+var totalPrice=cart.reduce(function(s,i){return s+i.price*i.qty;},0);
+function addToCart(p){setCart(function(prev){var ex=prev.find(function(i){return i.id===p.id;});return ex?prev.map(function(i){return i.id===p.id?Object.assign({},i,{qty:i.qty+1}):i;}):prev.concat([Object.assign({},p,{qty:1})])});}
+function changeQty(id,d){setCart(function(prev){return prev.map(function(i){return i.id===id?Object.assign({},i,{qty:i.qty+d}):i;}).filter(function(i){return i.qty>0;});});}
+function navTo(p){setPage(p);if(p!=="produto")setProd(null);}
+function handleWA(){var lines=cart.map(function(i){return "• "+i.brand+" "+i.name+" x"+i.qty+" — R$"+(i.price*i.qty).toLocaleString('pt-BR');}).join('\n');window.open('https://wa.me/5584900000000?text='+encodeURIComponent('Olá! Pedido ArenaBT:\n\n'+lines+'\n\n*Total: R$'+totalPrice.toLocaleString('pt-BR')+'*'),'_blank');}
+var TSTEPS=[{l:"Pedido confirmado",d:"24/06 14:32",s:"done"},{l:"Em separação",d:"24/06 16:00",s:"done"},{l:"Saiu para entrega",d:"25/06 09:15",s:"cur"},{l:"Entregue",d:"Previsão: 26/06",s:"pend"}];
+var PAY=[{id:"pix",Icon:PixIcon,n:"PIX",d:"Aprovação instantânea"},{id:"credito",Icon:CardIcon,n:"Crédito",d:"Até 10x sem juros"},{id:"debito",Icon:DebitIcon,n:"Débito",d:"Pagamento à vista"},{id:"boleto",Icon:BoletoIcon,n:"Boleto",d:"Vence em 3 dias"}];
+return React.createElement("div",null,
+React.createElement("nav",{className:"nav"},
+React.createElement("div",{className:"logo",onClick:function(){navTo("home");}},"Arena",React.createElement("span",null,"BT")),
+React.createElement("div",{className:"nav-links"},
+[["home","Início"],["catalogo","Catálogo"],["pagamentos","Pagamentos"],["rastreamento","Rastrear"],["contato","Contato"]].map(function(kl){return React.createElement("button",{key:kl[0],className:"nav-link"+(page===kl[0]||(page==="produto"&&kl[0]==="catalogo")?" act":""),onClick:function(){navTo(kl[0]);}},kl[1]);})
+),
+React.createElement("button",{className:"cb",onClick:function(){setCartOpen(true);setCartView("cart");}},"🛒",totalItems>0&&React.createElement("span",{className:"bc"},totalItems))
+),
+React.createElement("div",{className:"page"+(page==="home"?" act":"")},
+React.createElement("div",{className:"hero"},
+React.createElement("div",{className:"hbg"}),React.createElement("div",{className:"hgrid"}),
+React.createElement("div",{className:"fr"},[RACKET_COLORS.Mormaii,RACKET_COLORS.Heroes,RACKET_COLORS.Nox,RACKET_COLORS["Drop Shot"]].map(function(c,i){return React.createElement("div",{key:i},React.createElement(RacketSVG,{color:c,size:80}));})),
+React.createElement("div",{className:"hcont"},
+React.createElement("div",{className:"htag"},"Beach Tennis Store"),
+React.createElement("h1",{className:"htitle"},"Sua próxima ",React.createElement("span",{className:"y"},"raquete"),React.createElement("br",null),"te espera"),
+React.createElement("p",{className:"hsub"},"As melhores raquetes do mundo, entregues para você"),
+React.createElement("div",{className:"hctas"},React.createElement("button",{className:"bp",onClick:function(){navTo("catalogo");}},"Ver catálogo →"),React.createElement("button",{className:"bs",onClick:function(){navTo("contato");}},"Falar no WhatsApp"))
+),
+React.createElement("div",{className:"hscroll"},"↓ scroll")
+),
+React.createElement("div",{className:"ticker"},React.createElement("div",{className:"ttrack"},BRANDS.slice(1).concat(BRANDS.slice(1)).map(function(b,i){return React.createElement("div",{key:i,className:"titem"},React.createElement("div",{className:"tdot"}),b);}))),
+React.createElement("div",{className:"sec"},
+React.createElement("div",{className:"slabel"},"Destaques"),React.createElement("div",{className:"stitle"},"Mais vendidas do mundo"),React.createElement("div",{className:"ssub"},"Os modelos com 🔥 são os mais vendidos de cada marca"),
+React.createElement("div",{className:"pgrid"},PRODUCTS.filter(function(p){return p.hot;}).map(function(p){return React.createElement(RacketCard,{key:p.id,p:p,onAdd:addToCart,onOpen:function(p){setProd(p);setPage("produto");}});})),
+React.createElement("div",{style:{textAlign:"center",marginTop:"2rem"}},React.createElement("button",{className:"bp",onClick:function(){navTo("catalogo");}},"Ver catálogo completo →"))
+)
+),
+React.createElement("div",{className:"page"+(page==="catalogo"?" act":""),style:{paddingTop:52}},
+React.createElement("div",{className:"sec"},
+React.createElement("div",{className:"slabel"},"Catálogo"),React.createElement("div",{className:"stitle"},"Todas as raquetes"),React.createElement("div",{className:"ssub"},filtered.length+" produtos encontrados"),
+React.createElement("div",{className:"brands-grid"},BRANDS.map(function(b){return React.createElement("button",{key:b,className:"brand-logo-btn"+(brand===b?" act":""),onClick:function(){setBrand(b);}},b==="Todas"?React.createElement(RacketSVG,{color:"#e8ff5e",size:28}):React.createElement("span",{style:{fontSize:13,fontWeight:700,color:"#e8ff5e"}},b),React.createElement("span",null,b==="Todas"?"Todas":b));})),
+React.createElement("div",{className:"pgrid"},filtered.map(function(p){return React.createElement(RacketCard,{key:p.id,p:p,onAdd:addToCart,onOpen:function(p){setProd(p);setPage("produto");}});}))
+)
+),
+page==="produto"&&prod&&React.createElement(ProductPage,{p:prod,onBack:function(){setProd(null);setPage("catalogo");},onAdd:addToCart}),
+React.createElement("div",{className:"page"+(page==="pagamentos"?" act":""),style:{paddingTop:52}},
+React.createElement("div",{className:"sec"},
+React.createElement("div",{className:"slabel"},"Segurança"),React.createElement("div",{className:"stitle"},"Formas de pagamento"),React.createElement("div",{className:"ssub"},"Todas seguras — até 10x sem juros"),
+React.createElement("div",{className:"pmethods"},PAY.map(function(m){return React.createElement("div",{key:m.id,className:"pmc"+(payM===m.id?" sel":""),onClick:function(){setPayM(m.id);}},React.createElement("div",{className:"pmico"},React.createElement(m.Icon)),React.createElement("div",{className:"pmname"},m.n),React.createElement("div",{className:"pmdesc"},m.d));})),
+React.createElement("div",{className:"pform"},
+payM==="pix"&&React.createElement("div",{style:{textAlign:"center",padding:"1.5rem"}},React.createElement("div",{style:{margin:"0 auto 1rem",width:56,height:56,background:"#182000",borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center"}},React.createElement(PixIcon)),React.createElement("h3",null,"Pague com PIX"),React.createElement("p",{style:{color:"#666",fontSize:13,lineHeight:1.5,marginTop:8}},"Ao finalizar o pedido você recebe a chave PIX por e-mail e WhatsApp."),React.createElement("div",{style:{background:"#0d0d0d",borderRadius:9,padding:".875rem",marginTop:"1.25rem",fontFamily:"monospace",fontSize:12,color:"#e8ff5e"}},"arenabt@pagamentos.com.br")),
+payM==="credito"&&React.createElement("div",null,React.createElement("h3",null,"Dados do cartão"),React.createElement("div",{className:"fg"},React.createElement("label",null,"Número"),React.createElement("input",{className:"fi",placeholder:"0000 0000 0000 0000"})),React.createElement("div",{className:"fg"},React.createElement("label",null,"Nome"),React.createElement("input",{className:"fi",placeholder:"NOME SOBRENOME"})),React.createElement("div",{className:"frow"},React.createElement("div",{className:"fg"},React.createElement("label",null,"Validade"),React.createElement("input",{className:"fi",placeholder:"MM/AA"})),React.createElement("div",{className:"fg"},React.createElement("label",null,"CVV"),React.createElement("input",{className:"fi",placeholder:"000"}))),React.createElement("div",{className:"fg"},React.createElement("label",null,"Parcelas"),React.createElement("select",{className:"fi",style:{color:"#fff"}},[1,2,3,4,5,6,7,8,9,10].map(function(n){return React.createElement("option",{key:n},n===1?"1x sem juros":n+"x sem juros");})))),
+payM==="debito"&&React.createElement("div",null,React.createElement("h3",null,"Cartão de débito"),React.createElement("div",{className:"fg"},React.createElement("label",null,"Número"),React.createElement("input",{className:"fi",placeholder:"0000 0000 0000 0000"})),React.createElement("div",{className:"frow"},React.createElement("div",{className:"fg"},React.createElement("label",null,"Validade"),React.createElement("input",{className:"fi",placeholder:"MM/AA"})),React.createElement("div",{className:"fg"},React.createElement("label",null,"CVV"),React.createElement("input",{className:"fi",placeholder:"000"})))),
+payM==="boleto"&&React.createElement("div",{style:{textAlign:"center",padding:"1.5rem"}},React.createElement("div",{style:{margin:"0 auto 1rem",width:56,height:56,background:"#182000",borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center"}},React.createElement(BoletoIcon)),React.createElement("p",{style:{color:"#666",fontSize:13,lineHeight:1.5}},"O boleto é gerado após o pedido e enviado por e-mail."))
+)
+)
+),
+React.createElement("div",{className:"page"+(page==="rastreamento"?" act":""),style:{paddingTop:52}},
+React.createElement("div",{className:"sec"},
+React.createElement("div",{className:"slabel"},"Logística"),React.createElement("div",{className:"stitle"},"Rastrear pedido"),React.createElement("div",{className:"ssub"},"Digite o código do seu pedido"),
+React.createElement("div",{className:"tbox"},
+React.createElement("div",{className:"tinrow"},React.createElement("input",{className:"tin",placeholder:"Ex: ABT-2025-00123",value:track,onChange:function(e){setTrack(e.target.value);}}),React.createElement("button",{className:"tbtn",onClick:function(){setTracking(true);}},"Rastrear")),
+tracking?React.createElement("div",{className:"tsteps"},TSTEPS.map(function(s,i){return React.createElement("div",{key:i,className:"tstep "+s.s},React.createElement("div",{className:"sdot "+s.s},s.s==="done"?"✓":s.s==="cur"?"→":"○"),React.createElement("div",{className:"sinfo"},React.createElement("div",{className:"stitle2"},s.l),React.createElement("div",{className:"sdate"},s.d)));})):React.createElement("div",{style:{textAlign:"center",padding:"2rem"}},React.createElement(RacketSVG,{color:"#333",size:60}))
+)
+)
+),
+React.createElement("div",{className:"page"+(page==="contato"?" act":""),style:{paddingTop:52}},
+React.createElement("div",{className:"sec"},
+React.createElement("div",{className:"slabel"},"Atendimento"),React.createElement("div",{className:"stitle"},"Fale com a gente"),React.createElement("div",{className:"ssub"},"Disponíveis todos os dias"),
+React.createElement("div",{className:"cgrid"},
+React.createElement("div",{className:"cc",onClick:function(){window.open("https://wa.me/5584900000000","_blank");}},React.createElement("div",{className:"cico wa-bg"},"💬"),React.createElement("div",{className:"cname"},"WhatsApp"),React.createElement("div",{className:"cdesc"},"Atendimento rápido, dúvidas e pedidos."),React.createElement("div",{className:"cact"},"Chamar agora →")),
+React.createElement("div",{className:"cc",onClick:function(){window.open("https://instagram.com/arenabt","_blank");}},React.createElement("div",{className:"cico ig-bg"},"📸"),React.createElement("div",{className:"cname"},"Instagram"),React.createElement("div",{className:"cdesc"},"Novidades e unboxings das melhores raquetes."),React.createElement("div",{className:"cact"},"Seguir →")),
+React.createElement("div",{className:"cc",onClick:function(){window.open("mailto:contato@arenabt.com.br");}},React.createElement("div",{className:"cico em-bg"},"✉️"),React.createElement("div",{className:"cname"},"E-mail"),React.createElement("div",{className:"cdesc"},"Trocas, devoluções e notas fiscais."),React.createElement("div",{className:"cact"},"contato@arenabt.com.br →")),
+React.createElement("div",{className:"cc",onClick:function(){window.open("tel:+5584900000000");}},React.createElement("div",{className:"cico ph-bg"},"📞"),React.createElement("div",{className:"cname"},"Telefone"),React.createElement("div",{className:"cdesc"},"Seg. a sáb., 8h às 18h."),React.createElement("div",{className:"cact"},"(84) 9 0000-0000 →"))
+)
+)
+),
+page!=="produto"&&React.createElement("footer",null,React.createElement("div",{className:"flogo"},"Arena",React.createElement("span",null,"BT")),React.createElement("p",null,"© 2025 ArenaBT · Beach Tennis Store")),
+cartOpen&&React.createElement("div",{className:"covl",onClick:function(e){if(e.target===e.currentTarget)setCartOpen(false);}},
+React.createElement("div",{className:"cpanel"},
+cartView==="cart"&&React.createElement("div",{style:{display:"flex",flexDirection:"column",height:"100%"}},
+React.createElement("div",{className:"chdr"},React.createElement("h2",null,"Carrinho"),React.createElement("button",{className:"cx",onClick:function(){setCartOpen(false);}},"×")),
+React.createElement("div",{className:"cbody"},cart.length===0?React.createElement("div",{className:"cempty"},"Carrinho vazio"):cart.map(function(item){return React.createElement("div",{key:item.id,className:"citem"},React.createElement("div",{className:"ciimg"},React.createElement(ProdImg,{p:item,size:36})),React.createElement("div",{className:"ciinfo"},React.createElement("div",{className:"ciname"},item.name),React.createElement("div",{className:"cibrand"},item.brand),React.createElement("div",{className:"ciprice"},"R$"+(item.price*item.qty).toLocaleString('pt-BR')),React.createElement("div",{className:"ciqty"},React.createElement("button",{className:"qb",onClick:function(){changeQty(item.id,-1);}},"−"),React.createElement("span",{className:"qn"},item.qty),React.createElement("button",{className:"qb",onClick:function(){changeQty(item.id,1);}},"+"),React.createElement("button",{className:"crm",onClick:function(){changeQty(item.id,-item.qty);}},"remover"))));})),
+cart.length>0&&React.createElement("div",{className:"cfoot"},React.createElement("div",{className:"ctrow"},React.createElement("span",null,"Total"),React.createElement("span",null,"R$"+totalPrice.toLocaleString('pt-BR'))),React.createElement("button",{className:"chkbtn",onClick:function(){setCartView("checkout");}},"Finalizar pedido →"),React.createElement("button",{className:"wabtn",onClick:handleWA},"💬 Pedir pelo WhatsApp"))
+),
+cartView==="checkout"&&React.createElement("div",{className:"chkform"},
+React.createElement("button",{className:"backlink",onClick:function(){setCartView("cart");}},"← Voltar"),
+React.createElement("h2",null,"Finalizar pedido"),
+React.createElement("div",{className:"osbox"},React.createElement("div",{className:"ostitle"},"Resumo"),cart.map(function(i){return React.createElement("div",{key:i.id,className:"ositem"},React.createElement("span",null,i.name+" x"+i.qty),React.createElement("span",null,"R$"+(i.price*i.qty).toLocaleString('pt-BR')));}),React.createElement("div",{className:"ostotal"},React.createElement("span",null,"Total"),React.createElement("span",null,"R$"+totalPrice.toLocaleString('pt-BR')))),
+React.createElement("form",{onSubmit:function(e){e.preventDefault();setCartView("success");}},
+React.createElement("div",{className:"fg"},React.createElement("label",null,"Nome"),React.createElement("input",{className:"fi",required:true,placeholder:"Nome completo",value:form.nome,onChange:function(e){setForm(Object.assign({},form,{nome:e.target.value}));}})),
+React.createElement("div",{className:"fg"},React.createElement("label",null,"E-mail"),React.createElement("input",{className:"fi",required:true,type:"email",placeholder:"email@exemplo.com",value:form.email,onChange:function(e){setForm(Object.assign({},form,{email:e.target.value}));}})),
+React.createElement("div",{className:"fg"},React.createElement("label",null,"WhatsApp"),React.createElement("input",{className:"fi",required:true,placeholder:"(84) 99999-9999",value:form.tel,onChange:function(e){setForm(Object.assign({},form,{tel:e.target.value}));}})),
+React.createElement("div",{className:"frow"},React.createElement("div",{className:"fg"},React.createElement("label",null,"CEP"),React.createElement("input",{className:"fi",required:true,placeholder:"00000-000",value:form.cep,onChange:function(e){setForm(Object.assign({},form,{cep:e.target.value}));}})),React.createElement("div",{className:"fg"},React.createElement("label",null,"Número"),React.createElement("input",{className:"fi",required:true,placeholder:"123",value:form.num,onChange:function(e){setForm(Object.assign({},form,{num:e.target.value}));}}))),
+React.createElement("div",{className:"fg"},React.createElement("label",null,"Rua"),React.createElement("input",{className:"fi",required:true,placeholder:"Nome da rua",value:form.rua,onChange:function(e){setForm(Object.assign({},form,{rua:e.target.value}));}})),
+React.createElement("div",{className:"fg"},React.createElement("label",null,"Cidade"),React.createElement("input",{className:"fi",required:true,placeholder:"Sua cidade",value:form.cidade,onChange:function(e){setForm(Object.assign({},form,{cidade:e.target.value}));}})),
+React.createElement("button",{type:"submit",className:"placebtn"},"Confirmar pedido ✓"))
+),
+cartView==="success"&&React.createElement("div",{className:"sview"},React.createElement("div",{className:"sico"},"✅"),React.createElement("h2",null,"Pedido confirmado!"),React.createElement("p",null,"Obrigado, "+(form.nome||"cliente")+"! Entraremos em contato pelo WhatsApp em breve."),React.createElement("button",{className:"contbtn",onClick:function(){setCartOpen(false);setCart([]);setCartView("cart");}},"Continuar comprando"))
+)
+)
+);}
+ReactDOM.render(React.createElement(App),document.getElementById("root"));
+</script>
+</body>
+</html>
