@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ArenaBT — Beach Tennis Store</title>
+<meta name="description" content="Raquetes de beach tennis das melhores marcas do momento: Mormaii, Heroes, Nox, Drop Shot e mais. Compre com PIX, cartão em até 10x sem juros ou boleto.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cellipse cx='50' cy='44' rx='32' ry='38' fill='%230a0a0a' stroke='%23e8ff5e' stroke-width='6'/%3E%3Crect x='42' y='82' width='16' height='30' rx='6' fill='%23e8ff5e'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Crect width='100' height='120' fill='%230a0a0a'/%3E%3Cellipse cx='50' cy='44' rx='30' ry='36' fill='%230a0a0a' stroke='%23e8ff5e' stroke-width='6'/%3E%3Crect x='42' y='82' width='16' height='28' rx='6' fill='%23e8ff5e'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArenaBT">
+<meta property="og:title" content="ArenaBT — Beach Tennis Store">
+<meta property="og:description" content="Raquetes de beach tennis das melhores marcas do momento, com até 10x sem juros. Confira o catálogo completo.">
+<meta property="og:image" content="/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ArenaBT — Beach Tennis Store">
+<meta name="twitter:description" content="Raquetes de beach tennis das melhores marcas do momento, com até 10x sem juros.">
+<meta name="twitter:image" content="/og-image.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"OnlineStore","name":"ArenaBT","description":"Loja de raquetes de beach tennis das melhores marcas do momento.","url":"https://gabrielenio917-byte.github.io/arena-bt-/"}
+</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--blk:#0a0a0a;--yel:#e8ff5e;--g1:#111;--border:#222;--muted:#666;--white:#fff}
@@ -53,7 +69,8 @@ body{font-family:system-ui,sans-serif;background:var(--blk);color:var(--white);o
 .pcard{background:var(--g1);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .15s;perspective:800px}
 .pcard:hover{border-color:#444;transform:translateY(-2px)}
 .pcard-inner{transition:transform .1s ease-out;transform-style:preserve-3d}
-.pimg{height:160px;display:flex;align-items:center;justify-content:center;background:#0d0d0d;position:relative;overflow:hidden}
+.pimg{height:160px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#0d0d0d 25%,#161616 37%,#0d0d0d 63%);background-size:400% 100%;animation:shimmer 2.4s ease-in-out infinite;position:relative;overflow:hidden}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .pshine{position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(232,255,94,.1) 0%,transparent 55%);pointer-events:none;opacity:0;transition:opacity .2s}
 .pcard:hover .pshine{opacity:1}
 .pbadge{position:absolute;top:8px;left:8px;background:rgba(232,255,94,.12);border:1px solid rgba(232,255,94,.25);color:var(--yel);font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase}
@@ -71,7 +88,7 @@ body{font-family:system-ui,sans-serif;background:var(--blk);color:var(--white);o
 .prod-back{background:none;border:none;color:#666;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:5px;margin-bottom:1.5rem;padding:0}
 .prod-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 @media(max-width:600px){.prod-layout{grid-template-columns:1fr}}
-.prod-img-box{background:#0d0d0d;border:1px solid var(--border);border-radius:16px;height:300px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.prod-img-box{background:linear-gradient(90deg,#0d0d0d 25%,#161616 37%,#0d0d0d 63%);background-size:400% 100%;animation:shimmer 2.4s ease-in-out infinite;border:1px solid var(--border);border-radius:16px;height:300px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .prod-brand-badge{position:absolute;top:12px;left:12px;background:rgba(232,255,94,.12);border:1px solid rgba(232,255,94,.25);color:var(--yel);font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px;text-transform:uppercase}
 .prod-hot{position:absolute;top:12px;right:12px;background:var(--yel);color:var(--blk);font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px}
 .prod-brand{font-size:11px;font-weight:700;color:var(--yel);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
@@ -161,6 +178,46 @@ footer{background:#050505;border-top:1px solid #1a1a1a;padding:2.5rem 1.5rem;tex
 .flogo{font-size:24px;font-weight:900;letter-spacing:-1px;margin-bottom:.4rem}
 .flogo span{color:var(--yel)}
 footer p{color:#333;font-size:12px}
+.floLinks{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin:1rem 0}
+.fl-link{background:none;border:none;color:#555;font-size:12px;cursor:pointer;padding:0;text-decoration:underline}
+.fl-link:hover{color:var(--yel)}
+.flocnpj{margin-top:6px;color:#2a2a2a;font-size:11px}
+.legal-sec p{color:#888;font-size:14px;line-height:1.7;margin-bottom:1rem;max-width:700px}
+.legal-note{color:#444!important;font-size:11px!important;font-style:italic}
+.hamburger{display:none;background:none;border:none;color:var(--white);cursor:pointer;padding:4px}
+@media(max-width:760px){
+.nav-links{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:.6rem;flex:1;margin:0 .6rem}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links .nav-link{white-space:nowrap;font-size:11.5px;flex-shrink:0}
+.hamburger{display:flex;align-items:center;justify-content:center}
+}
+.ham-menu{display:none}
+.ham-menu.open{display:flex;flex-direction:column;position:fixed;top:52px;left:0;right:0;background:var(--blk);border-bottom:1px solid var(--border);padding:1rem 1.5rem;gap:.25rem;z-index:199}
+.ham-menu.open .nav-link{text-align:left;padding:.75rem 0;font-size:15px;border-bottom:1px solid #1a1a1a;width:100%}
+.ham-menu.open .nav-link:last-child{border-bottom:none}
+.nav-search-btn{background:none;border:none;color:var(--yel);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:4px;flex-shrink:0}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeInUp .35s ease}
+.search-wrap{display:flex;align-items:center;gap:8px;margin-bottom:1.25rem}
+.search-btn{background:var(--g1);border:1px solid var(--border);border-radius:10px;width:38px;height:38px;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.search-btn:hover,.search-btn.act{border-color:var(--yel)}
+.search-input{flex:1;background:var(--g1);border:1px solid var(--border);border-radius:10px;padding:9px 14px;color:var(--white);font-size:13px;min-width:0}
+.search-input::placeholder{color:#555}
+.search-input:focus{outline:none;border-color:var(--yel)}
+.search-clear{background:none;border:none;color:#555;font-size:16px;cursor:pointer;flex-shrink:0}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:12px;color:#555;margin-bottom:1rem;flex-wrap:wrap}
+.bc-link{background:none;border:none;color:#888;font-size:12px;cursor:pointer;padding:0}
+.bc-link:hover{color:var(--yel)}
+.bc-cur{color:#555}
+.delivery-est{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#999;background:#111;border:1px solid var(--border);border-radius:9px;padding:9px 12px;margin-bottom:1rem}
+.trust-badge{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#7a8c3a;margin-top:.875rem}
+.prod-actions-mobile{display:none}
+@media(max-width:600px){
+.prod-actions-desktop{display:none}
+.prod-actions-mobile{display:flex;position:fixed;left:0;right:0;bottom:0;background:rgba(10,10,10,.97);backdrop-filter:blur(10px);border-top:1px solid var(--border);padding:.75rem 1rem;z-index:150;margin:0}
+.prod-inner{padding-bottom:5.5rem}
+}
+.related-sec{margin-top:2.5rem;padding-top:2rem;border-top:1px solid #1a1a1a}
 </style>
 </head>
 <body>
@@ -168,13 +225,19 @@ footer p{color:#333;font-size:12px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script>
-  const {useState,useRef,useMemo}=React;
+  const {useState,useRef,useMemo,useEffect}=React;
 function RacketSVG({color,size}){color=color||"#e8ff5e";size=size||90;return React.createElement("svg",{width:size,height:size,viewBox:"0 0 100 120",fill:"none"},React.createElement("ellipse",{cx:50,cy:44,rx:32,ry:38,fill:color,opacity:.13,stroke:color,strokeWidth:2.5}),React.createElement("line",{x1:50,y1:6,x2:50,y2:82,stroke:color,strokeWidth:1.2,opacity:.5}),React.createElement("line",{x1:18,y1:44,x2:82,y2:44,stroke:color,strokeWidth:1.2,opacity:.5}),React.createElement("line",{x1:25,y1:20,x2:75,y2:68,stroke:color,strokeWidth:.8,opacity:.3}),React.createElement("line",{x1:75,y1:20,x2:25,y2:68,stroke:color,strokeWidth:.8,opacity:.3}),React.createElement("rect",{x:46,y:82,width:8,height:28,rx:4,fill:color,opacity:.8}),React.createElement("ellipse",{cx:50,cy:44,rx:32,ry:38,stroke:color,strokeWidth:2,fill:"none"}));}
 function PixIcon(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("path",{d:"M12 2L7 7H4v3l-2 2 2 2v3h3l5 5 5-5h3v-3l2-2-2-2V7h-3L12 2z",stroke:"#e8ff5e",strokeWidth:1.5,strokeLinejoin:"round"}),React.createElement("path",{d:"M9 12l2 2 4-4",stroke:"#e8ff5e",strokeWidth:1.5,strokeLinecap:"round"}));}
 function CardIcon(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("rect",{x:2,y:5,width:20,height:14,rx:2,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("line",{x1:2,y1:10,x2:22,y2:10,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("rect",{x:5,y:14,width:4,height:2,rx:.5,fill:"#e8ff5e"}));}
 function DebitIcon(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("rect",{x:2,y:5,width:20,height:14,rx:2,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("line",{x1:2,y1:10,x2:22,y2:10,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("circle",{cx:17,cy:15,r:2,stroke:"#e8ff5e",strokeWidth:1.5}));}
 function BoletoIcon(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("rect",{x:3,y:3,width:18,height:18,rx:2,stroke:"#e8ff5e",strokeWidth:1.5}),React.createElement("line",{x1:7,y1:7,x2:7,y2:17,stroke:"#e8ff5e",strokeWidth:2}),React.createElement("line",{x1:10,y1:7,x2:10,y2:17,stroke:"#e8ff5e",strokeWidth:1}),React.createElement("line",{x1:13,y1:7,x2:13,y2:17,stroke:"#e8ff5e",strokeWidth:2}),React.createElement("line",{x1:16,y1:7,x2:16,y2:17,stroke:"#e8ff5e",strokeWidth:1}));}
+function MenuIcon(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("line",{x1:3,y1:6,x2:21,y2:6,stroke:"#fff",strokeWidth:2,strokeLinecap:"round"}),React.createElement("line",{x1:3,y1:12,x2:21,y2:12,stroke:"#fff",strokeWidth:2,strokeLinecap:"round"}),React.createElement("line",{x1:3,y1:18,x2:21,y2:18,stroke:"#fff",strokeWidth:2,strokeLinecap:"round"}));}
+function CloseIcon2(){return React.createElement("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none"},React.createElement("line",{x1:5,y1:5,x2:19,y2:19,stroke:"#fff",strokeWidth:2,strokeLinecap:"round"}),React.createElement("line",{x1:19,y1:5,x2:5,y2:19,stroke:"#fff",strokeWidth:2,strokeLinecap:"round"}));}
+function SearchIcon({color}){color=color||"#e8ff5e";return React.createElement("svg",{width:18,height:18,viewBox:"0 0 24 24",fill:"none"},React.createElement("circle",{cx:11,cy:11,r:7,stroke:color,strokeWidth:2}),React.createElement("line",{x1:21,y1:21,x2:16.65,y2:16.65,stroke:color,strokeWidth:2,strokeLinecap:"round"}));}
+function LockIcon(){return React.createElement("svg",{width:16,height:16,viewBox:"0 0 24 24",fill:"none"},React.createElement("rect",{x:5,y:11,width:14,height:9,rx:2,stroke:"#7a8c3a",strokeWidth:1.6}),React.createElement("path",{d:"M8 11V7a4 4 0 018 0v4",stroke:"#7a8c3a",strokeWidth:1.6}));}
+function TruckIcon(){return React.createElement("svg",{width:16,height:16,viewBox:"0 0 24 24",fill:"none"},React.createElement("rect",{x:1,y:7,width:13,height:9,rx:1,stroke:"#888",strokeWidth:1.6}),React.createElement("path",{d:"M14 10h4l4 4v2h-8v-6z",stroke:"#888",strokeWidth:1.6}),React.createElement("circle",{cx:6,cy:18,r:1.6,stroke:"#888",strokeWidth:1.4}),React.createElement("circle",{cx:17,cy:18,r:1.6,stroke:"#888",strokeWidth:1.4}));}
 const BRANDS=["Todas","Mormaii","Heroes","Vaib","Drop Shot","Joog","Ama Sport","Nox","Zand","Fobel","Minimalist","Kona"];
+const NAV_ITEMS=[["home","Início","Início"],["catalogo","Catálogo","Nosso Catálogo"],["pagamentos","Pagamentos","Formas de Pagamento"],["rastreamento","Rastrear","Rastrear Pedido"],["contato","Contato","Fale Conosco"]];
 const RACKET_COLORS={Mormaii:"#4fc3f7",Heroes:"#f06292",Vaib:"#aed581","Drop Shot":"#ff8a65",Joog:"#ce93d8","Ama Sport":"#4db6ac",Nox:"#e8ff5e",Zand:"#ffd54f",Fobel:"#80deea",Minimalist:"#fff",Kona:"#ff7043"};
 const PRODUCTS=[
 {id:1,brand:"Mormaii",name:"Vitória Marchesini 2025",desc:"Carbono 3K, parceria com a atleta Vitória Marchesini.",price:890,stars:5,hot:true,material:"Carbono 3K",peso:"320g",nivel:"Avançado",img:"/raquetes/mormaii-vitoria-2025.png"},
@@ -189,7 +252,7 @@ const PRODUCTS=[
 {id:10,brand:"Vaib",name:"Storm Control 2025",desc:"Equilíbrio entre ataque e defesa com EVA Soft.",price:590,stars:4,hot:false,material:"Carbono 3K",peso:"330g",nivel:"Intermediário",img:"/raquetes/vaib-storm-2025.png"},
 {id:11,brand:"Vaib",name:"Coast BT 2024",desc:"Resistente à maresia, grip especial para alta umidade.",price:420,stars:4,hot:false,material:"Carbono + Vidro",peso:"335g",nivel:"Intermediário",img:"/raquetes/vaib-coast-2024.png"},
 {id:12,brand:"Vaib",name:"Entry Glass",desc:"Entrada de linha com fibra de vidro.",price:260,stars:3,hot:false,material:"Fibra de vidro",peso:"345g",nivel:"Iniciante",img:"/raquetes/vaib-entry.png"},
-{id:13,brand:"Drop Shot",name:"Conqueror 12.0 BT",desc:"Carbono 24K ultra-rígido. Uma das melhores do mundo.",price:980,stars:5,hot:true,material:"Carbono 24K",peso:"315g",nivel:"Profissional",img:"/raquetes/dropshot-conqueror12.png"},
+{id:13,brand:"Drop Shot",name:"Conqueror 12.0 BT",desc:"Carbono 24K ultra-rígido. Uma das melhores do momento.",price:980,stars:5,hot:true,material:"Carbono 24K",peso:"315g",nivel:"Profissional",img:"/raquetes/dropshot-conqueror12.png"},
 {id:14,brand:"Drop Shot",name:"Explorer 6.0 BT",desc:"Carbono 3K com tecnologia 3D Face. Escolha de atleta.",price:560,stars:5,hot:true,material:"Carbono 3K",peso:"325g",nivel:"Intermediário",img:"/raquetes/dropshot-explorer6.png"},
 {id:15,brand:"Drop Shot",name:"Conqueror 13 Comfort",desc:"Linha Pro Competition com EVA Comfort.",price:850,stars:5,hot:false,material:"Carbono 12K",peso:"320g",nivel:"Profissional",img:"/raquetes/dropshot-conqueror13.png"},
 {id:16,brand:"Drop Shot",name:"Renegade Control",desc:"Potência intermediária com face rugosa para efeitos.",price:380,stars:4,hot:false,material:"Carbono + Vidro",peso:"332g",nivel:"Intermediário",img:"/raquetes/dropshot-renegade.png"},
@@ -223,52 +286,82 @@ const PRODUCTS=[
 {id:44,brand:"Kona",name:"Aloha Glass",desc:"Para quem leva o esporte com leveza e alegria.",price:280,stars:3,hot:false,material:"Fibra de vidro",peso:"342g",nivel:"Iniciante",img:"/raquetes/kona-aloha.png"},
 ];
 function Stars({n}){return React.createElement("div",{className:"pstars"},[1,2,3,4,5].map(function(i){return React.createElement("span",{key:i,className:i<=n?"s":""},"★");}));}
-function ProdImg({p,size}){size=size||80;var[err,setErr]=useState(false);var col=RACKET_COLORS[p.brand]||"#e8ff5e";if(err||!p.img)return React.createElement(RacketSVG,{color:col,size:size});return React.createElement("img",{src:p.img,alt:p.name,style:{width:size,height:size,objectFit:"contain"},onError:function(){setErr(true);}});}
+function ProdImg({p,size}){size=size||80;var[err,setErr]=useState(false);var[loaded,setLoaded]=useState(false);var col=RACKET_COLORS[p.brand]||"#e8ff5e";if(err||!p.img)return React.createElement(RacketSVG,{color:col,size:size});return React.createElement("img",{src:p.img,alt:p.name,loading:"lazy",style:{width:size,height:size,objectFit:"contain",opacity:loaded?1:0,transition:"opacity .3s"},onLoad:function(){setLoaded(true);},onError:function(){setErr(true);}});}
 function RacketCard({p,onAdd,onOpen}){var ref=useRef(null);var eref=useRef(null);function mm(e){var r=ref.current.getBoundingClientRect();var rx=((e.clientY-(r.top+r.height/2))/r.height)*10;var ry=((e.clientX-(r.left+r.width/2))/r.width)*-10;ref.current.querySelector('.pcard-inner').style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';if(eref.current)eref.current.style.transform='translateZ(25px) scale(1.08)';var px=((e.clientX-r.left)/r.width)*100,py=((e.clientY-r.top)/r.height)*100;ref.current.querySelector('.pshine').style.setProperty('--mx',px+'%');ref.current.querySelector('.pshine').style.setProperty('--my',py+'%');}function ml(){ref.current.querySelector('.pcard-inner').style.transform='';if(eref.current)eref.current.style.transform='';}function tm(e){var t=e.touches[0];var r=ref.current.getBoundingClientRect();var rx=((t.clientY-(r.top+r.height/2))/r.height)*8;var ry=((t.clientX-(r.left+r.width/2))/r.width)*-8;ref.current.querySelector('.pcard-inner').style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';if(eref.current)eref.current.style.transform='translateZ(20px) scale(1.06)';}function te(){ref.current.querySelector('.pcard-inner').style.transform='';if(eref.current)eref.current.style.transform='';}return React.createElement("div",{className:"pcard",ref:ref,onMouseMove:mm,onMouseLeave:ml,onTouchMove:tm,onTouchEnd:te,onClick:function(){onOpen(p);}},React.createElement("div",{className:"pcard-inner"},React.createElement("div",{className:"pimg"},React.createElement("div",{className:"pshine"}),React.createElement("span",{className:"pbadge"},p.brand),p.hot&&React.createElement("span",{className:"phot"},"🔥 TOP"),React.createElement("div",{ref:eref,style:{transition:"transform .1s ease-out"}},React.createElement(ProdImg,{p:p,size:90}))),React.createElement("div",{className:"pbody"},React.createElement(Stars,{n:p.stars}),React.createElement("div",{className:"pname"},p.name),React.createElement("div",{className:"pdesc"},p.desc.slice(0,68)+(p.desc.length>68?"…":"")),React.createElement("div",{className:"pfoot"},React.createElement("div",{className:"pprice"},"R$"+p.price.toLocaleString('pt-BR')),React.createElement("button",{className:"padd",onClick:function(e){e.stopPropagation();onAdd(p);}},"+ Add")))));}
-function ProductPage({p,onBack,onAdd}){var imgRef=useRef(null);var rRef=useRef(null);function mm(e){var r=imgRef.current.getBoundingClientRect();var px=((e.clientX-r.left)/r.width)*100,py=((e.clientY-r.top)/r.height)*100;imgRef.current.querySelector('.pshine').style.setProperty('--mx',px+'%');imgRef.current.querySelector('.pshine').style.setProperty('--my',py+'%');imgRef.current.querySelector('.pshine').style.opacity=1;if(rRef.current){var rx=((e.clientY-(r.top+r.height/2))/r.height)*8;var ry=((e.clientX-(r.left+r.width/2))/r.width)*-8;rRef.current.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg) scale(1.05)';}}function ml(){if(imgRef.current)imgRef.current.querySelector('.pshine').style.opacity=0;if(rRef.current)rRef.current.style.transform='';}var inst=Math.ceil(p.price/10);return React.createElement("div",{className:"prod-page"},React.createElement("div",{className:"prod-inner"},React.createElement("button",{className:"prod-back",onClick:onBack},"← Voltar ao catálogo"),React.createElement("div",{className:"prod-layout"},React.createElement("div",null,React.createElement("div",{className:"prod-img-box",ref:imgRef,onMouseMove:mm,onMouseLeave:ml},React.createElement("div",{className:"pshine"}),React.createElement("span",{className:"prod-brand-badge"},p.brand),p.hot&&React.createElement("span",{className:"prod-hot"},"🔥 Mais vendida"),React.createElement("div",{ref:rRef,style:{transition:"transform .15s ease-out"}},React.createElement(ProdImg,{p:p,size:160})))),React.createElement("div",null,React.createElement("div",{className:"prod-brand"},p.brand),React.createElement("div",{className:"prod-name"},p.name),React.createElement("div",{className:"prod-stars"},[1,2,3,4,5].map(function(i){return React.createElement("span",{key:i,className:i<=p.stars?"s":""},"★");})),React.createElement("div",{className:"prod-desc"},p.desc),React.createElement("div",{className:"prod-specs"},React.createElement("h4",null,"Especificações"),[["Material",p.material],["Peso",p.peso],["Nível",p.nivel],["Garantia","30 dias"]].map(function(kv){return React.createElement("div",{key:kv[0],className:"spec-row"},React.createElement("span",null,kv[0]),React.createElement("span",null,kv[1]));})),React.createElement("div",{className:"prod-price"},"R$"+p.price.toLocaleString('pt-BR'),React.createElement("sub",null," ou 10x de R$"+inst.toLocaleString('pt-BR')+" s/ juros")),React.createElement("div",{className:"prod-actions"},React.createElement("button",{className:"btn-add-big",onClick:function(){onAdd(p);}},"Adicionar ao carrinho"),React.createElement("button",{className:"btn-wa",onClick:function(){window.open('https://wa.me/5584900000000?text='+encodeURIComponent('Olá! Interesse na '+p.brand+' '+p.name),'_blank');}},"💬"))))));}
+function ProductPage({p,onBack,onAdd,onGoBrand,onOpenRelated}){var imgRef=useRef(null);var rRef=useRef(null);
+useEffect(function(){var s=document.createElement('script');s.type='application/ld+json';s.id='product-schema';s.text=JSON.stringify({"@context":"https://schema.org","@type":"Product","name":p.brand+" "+p.name,"brand":p.brand,"description":p.desc,"offers":{"@type":"Offer","priceCurrency":"BRL","price":p.price,"availability":"https://schema.org/InStock"}});document.head.appendChild(s);return function(){var old=document.getElementById('product-schema');if(old)old.remove();};},[p.id]);
+function mm(e){var r=imgRef.current.getBoundingClientRect();var px=((e.clientX-r.left)/r.width)*100,py=((e.clientY-r.top)/r.height)*100;imgRef.current.querySelector('.pshine').style.setProperty('--mx',px+'%');imgRef.current.querySelector('.pshine').style.setProperty('--my',py+'%');imgRef.current.querySelector('.pshine').style.opacity=1;if(rRef.current){var rx=((e.clientY-(r.top+r.height/2))/r.height)*8;var ry=((e.clientX-(r.left+r.width/2))/r.width)*-8;rRef.current.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg) scale(1.05)';}}function ml(){if(imgRef.current)imgRef.current.querySelector('.pshine').style.opacity=0;if(rRef.current)rRef.current.style.transform='';}var inst=Math.ceil(p.price/10);var related=PRODUCTS.filter(function(r){return r.brand===p.brand&&r.id!==p.id;}).slice(0,4);return React.createElement("div",{className:"prod-page fade-in",key:p.id},React.createElement("div",{className:"prod-inner"},
+React.createElement("div",{className:"breadcrumb"},React.createElement("button",{className:"bc-link",onClick:onBack},"Catálogo"),React.createElement("span",null,"›"),React.createElement("button",{className:"bc-link",onClick:function(){onGoBrand(p.brand);}},p.brand),React.createElement("span",null,"›"),React.createElement("span",{className:"bc-cur"},p.name)),
+React.createElement("button",{className:"prod-back",onClick:onBack},"← Voltar ao catálogo"),
+React.createElement("div",{className:"prod-layout"},
+React.createElement("div",null,React.createElement("div",{className:"prod-img-box",ref:imgRef,onMouseMove:mm,onMouseLeave:ml},React.createElement("div",{className:"pshine"}),React.createElement("span",{className:"prod-brand-badge"},p.brand),p.hot&&React.createElement("span",{className:"prod-hot"},"🔥 Mais vendida"),React.createElement("div",{ref:rRef,style:{transition:"transform .15s ease-out"}},React.createElement(ProdImg,{p:p,size:160})))),
+React.createElement("div",null,
+React.createElement("div",{className:"prod-brand"},p.brand),
+React.createElement("div",{className:"prod-name"},p.name),
+React.createElement("div",{className:"prod-stars"},[1,2,3,4,5].map(function(i){return React.createElement("span",{key:i,className:i<=p.stars?"s":""},"★");})),
+React.createElement("div",{className:"prod-desc"},p.desc),
+React.createElement("div",{className:"prod-specs"},React.createElement("h4",null,"Especificações"),[["Material",p.material],["Peso",p.peso],["Nível",p.nivel],["Garantia","30 dias"]].map(function(kv){return React.createElement("div",{key:kv[0],className:"spec-row"},React.createElement("span",null,kv[0]),React.createElement("span",null,kv[1]));})),
+React.createElement("div",{className:"prod-price"},"R$"+p.price.toLocaleString('pt-BR'),React.createElement("sub",null," ou 10x de R$"+inst.toLocaleString('pt-BR')+" s/ juros")),
+React.createElement("div",{className:"delivery-est"},React.createElement(TruckIcon),React.createElement("span",null,"Chega em até 7 dias úteis para todo o Brasil")),
+React.createElement("div",{className:"prod-actions prod-actions-desktop"},React.createElement("button",{className:"btn-add-big",onClick:function(){onAdd(p);}},"Adicionar ao carrinho"),React.createElement("button",{className:"btn-wa",onClick:function(){window.open('https://wa.me/5584900000000?text='+encodeURIComponent('Olá! Interesse na '+p.brand+' '+p.name),'_blank');}},"💬")),
+React.createElement("div",{className:"trust-badge"},React.createElement(LockIcon),React.createElement("span",null,"Compra 100% segura · dados protegidos"))
+)),
+related.length>0&&React.createElement("div",{className:"related-sec"},React.createElement("div",{className:"slabel"},"Você também pode gostar"),React.createElement("div",{className:"pgrid"},related.map(function(r){return React.createElement(RacketCard,{key:r.id,p:r,onAdd:onAdd,onOpen:onOpenRelated});}))),
+React.createElement("div",{className:"prod-actions prod-actions-mobile"},React.createElement("button",{className:"btn-add-big",onClick:function(){onAdd(p);}},"Adicionar ao carrinho"),React.createElement("button",{className:"btn-wa",onClick:function(){window.open('https://wa.me/5584900000000?text='+encodeURIComponent('Olá! Interesse na '+p.brand+' '+p.name),'_blank');}},"💬"))
+));}
   function App(){
 var[page,setPage]=useState("home");
 var[brand,setBrand]=useState("Todas");
-var[cart,setCart]=useState([]);
+var[cart,setCart]=useState(function(){try{var saved=localStorage.getItem('arenabt_cart');return saved?JSON.parse(saved):[];}catch(e){return [];}});
+useEffect(function(){try{localStorage.setItem('arenabt_cart',JSON.stringify(cart));}catch(e){}},[cart]);
 var[cartOpen,setCartOpen]=useState(false);
 var[cartView,setCartView]=useState("cart");
 var[payM,setPayM]=useState("pix");
 var[track,setTrack]=useState("");
 var[tracking,setTracking]=useState(false);
 var[prod,setProd]=useState(null);
+var[menuOpen,setMenuOpen]=useState(false);
+var[searchOpen,setSearchOpen]=useState(false);
+var[searchQuery,setSearchQuery]=useState("");
 var[form,setForm]=useState({nome:"",email:"",tel:"",cep:"",rua:"",num:"",cidade:""});
-var filtered=useMemo(function(){return brand==="Todas"?PRODUCTS:PRODUCTS.filter(function(p){return p.brand===brand;});},[ brand]);
+var filtered=useMemo(function(){var list=brand==="Todas"?PRODUCTS:PRODUCTS.filter(function(p){return p.brand===brand;});if(searchQuery.trim()){var q=searchQuery.trim().toLowerCase();list=list.filter(function(p){return p.name.toLowerCase().indexOf(q)!==-1||p.brand.toLowerCase().indexOf(q)!==-1;});}return list;},[brand,searchQuery]);
 var totalItems=cart.reduce(function(s,i){return s+i.qty;},0);
 var totalPrice=cart.reduce(function(s,i){return s+i.price*i.qty;},0);
 function addToCart(p){setCart(function(prev){var ex=prev.find(function(i){return i.id===p.id;});return ex?prev.map(function(i){return i.id===p.id?Object.assign({},i,{qty:i.qty+1}):i;}):prev.concat([Object.assign({},p,{qty:1})])});}
 function changeQty(id,d){setCart(function(prev){return prev.map(function(i){return i.id===id?Object.assign({},i,{qty:i.qty+d}):i;}).filter(function(i){return i.qty>0;});});}
-function navTo(p){setPage(p);if(p!=="produto")setProd(null);}
+function navTo(p){setPage(p);if(p!=="produto")setProd(null);setMenuOpen(false);}
 function handleWA(){var lines=cart.map(function(i){return "• "+i.brand+" "+i.name+" x"+i.qty+" — R$"+(i.price*i.qty).toLocaleString('pt-BR');}).join('\n');window.open('https://wa.me/5584900000000?text='+encodeURIComponent('Olá! Pedido ArenaBT:\n\n'+lines+'\n\n*Total: R$'+totalPrice.toLocaleString('pt-BR')+'*'),'_blank');}
 var TSTEPS=[{l:"Pedido confirmado",d:"24/06 14:32",s:"done"},{l:"Em separação",d:"24/06 16:00",s:"done"},{l:"Saiu para entrega",d:"25/06 09:15",s:"cur"},{l:"Entregue",d:"Previsão: 26/06",s:"pend"}];
-var PAY=[{id:"pix",Icon:PixIcon,n:"PIX",d:"Aprovação instantânea"},{id:"credito",Icon:CardIcon,n:"Crédito",d:"Até 10x sem juros"},{id:"debito",Icon:DebitIcon,n:"Débito",d:"Pagamento à vista"},{id:"boleto",Icon:BoletoIcon,n:"Boleto",d:"Vence em 3 dias"}];
+var PAY=[{id:"pix",Icon:PixIcon,n:"PIX",d:"Aprovação instantânea"},{id:"credito",Icon:CardIcon,n:"Crédito",d:"Até 10x sem juros"},{id:"debito",Icon:DebitIcon,n:"Débito",d:"Pagamento à vista"},{id:"boleto",Icon:BoletoIcon,n:"Boleto",d:"Vence em 7 dias"}];
 return React.createElement("div",null,
 React.createElement("nav",{className:"nav"},
 React.createElement("div",{className:"logo",onClick:function(){navTo("home");}},"Arena",React.createElement("span",null,"BT")),
 React.createElement("div",{className:"nav-links"},
-[["home","Início"],["catalogo","Catálogo"],["pagamentos","Pagamentos"],["rastreamento","Rastrear"],["contato","Contato"]].map(function(kl){return React.createElement("button",{key:kl[0],className:"nav-link"+(page===kl[0]||(page==="produto"&&kl[0]==="catalogo")?" act":""),onClick:function(){navTo(kl[0]);}},kl[1]);})
+NAV_ITEMS.map(function(kl){return React.createElement("button",{key:kl[0],className:"nav-link"+(page===kl[0]||(page==="produto"&&kl[0]==="catalogo")?" act":""),onClick:function(){navTo(kl[0]);}},kl[1]);})
 ),
-React.createElement("button",{className:"cb",onClick:function(){setCartOpen(true);setCartView("cart");}},"🛒",totalItems>0&&React.createElement("span",{className:"bc"},totalItems))
+React.createElement("div",{style:{display:"flex",alignItems:"center",gap:8}},
+page==="home"&&React.createElement("button",{className:"nav-search-btn",onClick:function(){setPage("catalogo");setProd(null);setMenuOpen(false);setSearchOpen(true);}},React.createElement(SearchIcon,{color:"#e8ff5e"})),
+React.createElement("button",{className:"cb",onClick:function(){setCartOpen(true);setCartView("cart");}},"🛒",totalItems>0&&React.createElement("span",{className:"bc"},totalItems)),
+React.createElement("button",{className:"hamburger",onClick:function(){setMenuOpen(!menuOpen);}},menuOpen?React.createElement(CloseIcon2):React.createElement(MenuIcon))
+)
+),
+React.createElement("div",{className:"ham-menu"+(menuOpen?" open":"")},
+NAV_ITEMS.map(function(kl){return React.createElement("button",{key:kl[0],className:"nav-link"+(page===kl[0]||(page==="produto"&&kl[0]==="catalogo")?" act":""),onClick:function(){navTo(kl[0]);}},kl[2]);})
 ),
 React.createElement("div",{className:"page"+(page==="home"?" act":"")},
 React.createElement("div",{className:"hero"},
 React.createElement("div",{className:"hbg"}),React.createElement("div",{className:"hgrid"}),
-React.createElement("div",{className:"fr"},[RACKET_COLORS.Mormaii,RACKET_COLORS.Heroes,RACKET_COLORS.Nox,RACKET_COLORS["Drop Shot"]].map(function(c,i){return React.createElement("div",{key:i},React.createElement(RacketSVG,{color:c,size:80}));})),
 React.createElement("div",{className:"hcont"},
 React.createElement("div",{className:"htag"},"Beach Tennis Store"),
 React.createElement("h1",{className:"htitle"},"Sua próxima ",React.createElement("span",{className:"y"},"raquete"),React.createElement("br",null),"te espera"),
-React.createElement("p",{className:"hsub"},"As melhores raquetes do mundo, entregues para você"),
+React.createElement("p",{className:"hsub"},"As melhores raquetes do momento, entregues para você"),
 React.createElement("div",{className:"hctas"},React.createElement("button",{className:"bp",onClick:function(){navTo("catalogo");}},"Ver catálogo →"),React.createElement("button",{className:"bs",onClick:function(){navTo("contato");}},"Falar no WhatsApp"))
 ),
 React.createElement("div",{className:"hscroll"},"↓ scroll")
 ),
-React.createElement("div",{className:"ticker"},React.createElement("div",{className:"ttrack"},BRANDS.slice(1).concat(BRANDS.slice(1)).map(function(b,i){return React.createElement("div",{key:i,className:"titem"},React.createElement("div",{className:"tdot"}),b);}))),
+React.createElement("div",{className:"ticker"},React.createElement("div",{className:"ttrack"},BRANDS.slice(1).concat(BRANDS.slice(1)).map(function(b,i){return React.createElement("div",{key:i,className:"titem",style:{cursor:"pointer"},onClick:function(){setBrand(b);navTo("catalogo");}},React.createElement("div",{className:"tdot"}),b);}))),
 React.createElement("div",{className:"sec"},
-React.createElement("div",{className:"slabel"},"Destaques"),React.createElement("div",{className:"stitle"},"Mais vendidas do mundo"),React.createElement("div",{className:"ssub"},"Os modelos com 🔥 são os mais vendidos de cada marca"),
+React.createElement("div",{className:"slabel"},"Destaques"),React.createElement("div",{className:"stitle"},"As queridinhas do momento"),React.createElement("div",{className:"ssub"},"Os modelos com 🔥 são os mais vendidos de cada marca"),
 React.createElement("div",{className:"pgrid"},PRODUCTS.filter(function(p){return p.hot;}).map(function(p){return React.createElement(RacketCard,{key:p.id,p:p,onAdd:addToCart,onOpen:function(p){setProd(p);setPage("produto");}});})),
 React.createElement("div",{style:{textAlign:"center",marginTop:"2rem"}},React.createElement("button",{className:"bp",onClick:function(){navTo("catalogo");}},"Ver catálogo completo →"))
 )
@@ -277,10 +370,15 @@ React.createElement("div",{className:"page"+(page==="catalogo"?" act":""),style:
 React.createElement("div",{className:"sec"},
 React.createElement("div",{className:"slabel"},"Catálogo"),React.createElement("div",{className:"stitle"},"Todas as raquetes"),React.createElement("div",{className:"ssub"},filtered.length+" produtos encontrados"),
 React.createElement("div",{className:"brands-grid"},BRANDS.map(function(b){return React.createElement("button",{key:b,className:"brand-logo-btn"+(brand===b?" act":""),onClick:function(){setBrand(b);}},b==="Todas"?React.createElement(RacketSVG,{color:"#e8ff5e",size:28}):React.createElement("span",{style:{fontSize:13,fontWeight:700,color:"#e8ff5e"}},b),React.createElement("span",null,b==="Todas"?"Todas":b));})),
-React.createElement("div",{className:"pgrid"},filtered.map(function(p){return React.createElement(RacketCard,{key:p.id,p:p,onAdd:addToCart,onOpen:function(p){setProd(p);setPage("produto");}});}))
+React.createElement("div",{className:"search-wrap"},
+React.createElement("button",{className:"search-btn"+(searchOpen?" act":""),onClick:function(){setSearchOpen(!searchOpen);if(searchOpen){setSearchQuery("");}}},React.createElement(SearchIcon)),
+searchOpen&&React.createElement("input",{className:"search-input",autoFocus:true,placeholder:"Buscar pelo nome do modelo...",value:searchQuery,onChange:function(e){setSearchQuery(e.target.value);}}),
+searchOpen&&searchQuery&&React.createElement("button",{className:"search-clear",onClick:function(){setSearchQuery("");}},"×")
+),
+React.createElement("div",{className:"pgrid fade-in",key:brand+"|"+searchQuery},filtered.map(function(p){return React.createElement(RacketCard,{key:p.id,p:p,onAdd:addToCart,onOpen:function(p){setProd(p);setPage("produto");}});}))
 )
 ),
-page==="produto"&&prod&&React.createElement(ProductPage,{p:prod,onBack:function(){setProd(null);setPage("catalogo");},onAdd:addToCart}),
+page==="produto"&&prod&&React.createElement(ProductPage,{key:prod.id,p:prod,onBack:function(){setProd(null);setPage("catalogo");},onAdd:addToCart,onGoBrand:function(b){setBrand(b);setProd(null);setPage("catalogo");},onOpenRelated:function(np){setProd(np);}}),
 React.createElement("div",{className:"page"+(page==="pagamentos"?" act":""),style:{paddingTop:52}},
 React.createElement("div",{className:"sec"},
 React.createElement("div",{className:"slabel"},"Segurança"),React.createElement("div",{className:"stitle"},"Formas de pagamento"),React.createElement("div",{className:"ssub"},"Todas seguras — até 10x sem juros"),
@@ -313,13 +411,23 @@ React.createElement("div",{className:"cc",onClick:function(){window.open("tel:+5
 )
 )
 ),
-page!=="produto"&&React.createElement("footer",null,React.createElement("div",{className:"flogo"},"Arena",React.createElement("span",null,"BT")),React.createElement("p",null,"© 2025 ArenaBT · Beach Tennis Store")),
+page!=="produto"&&React.createElement("footer",null,React.createElement("div",{className:"flogo"},"Arena",React.createElement("span",null,"BT")),
+React.createElement("div",{className:"floLinks"},
+React.createElement("button",{className:"fl-link",onClick:function(){navTo("troca");}},"Política de Troca e Devolução"),
+React.createElement("button",{className:"fl-link",onClick:function(){navTo("privacidade");}},"Política de Privacidade"),
+React.createElement("button",{className:"fl-link",onClick:function(){navTo("termos");}},"Termos de Uso")
+),
+React.createElement("p",null,"© 2025 ArenaBT · Beach Tennis Store"),
+React.createElement("p",{className:"flocnpj"},"CNPJ [preencher] · [endereço da loja]")),
+React.createElement("div",{className:"page"+(page==="troca"?" act":""),style:{paddingTop:52}},React.createElement("div",{className:"sec legal-sec"},React.createElement("div",{className:"slabel"},"Direitos do consumidor"),React.createElement("div",{className:"stitle"},"Política de Troca e Devolução"),React.createElement("p",null,"Você tem direito à troca em até 30 dias corridos após o recebimento, caso o produto apresente defeito de fabricação, mediante análise técnica."),React.createElement("p",null,"Além disso, conforme o Código de Defesa do Consumidor (art. 49), compras feitas fora do estabelecimento comercial (como neste site) podem ser canceladas em até 7 dias corridos após o recebimento, sem necessidade de justificativa (direito de arrependimento), com reembolso integral."),React.createElement("p",null,"Para solicitar troca ou devolução, entre em contato pelo WhatsApp ou e-mail informados na página de Fale Conosco, com o número do pedido em mãos."),React.createElement("p",{className:"legal-note"},"[Texto genérico — revisar com um contador/advogado antes de publicar oficialmente]"))),
+React.createElement("div",{className:"page"+(page==="privacidade"?" act":""),style:{paddingTop:52}},React.createElement("div",{className:"sec legal-sec"},React.createElement("div",{className:"slabel"},"Seus dados"),React.createElement("div",{className:"stitle"},"Política de Privacidade"),React.createElement("p",null,"Coletamos apenas os dados necessários para processar seu pedido: nome, e-mail, telefone e endereço de entrega."),React.createElement("p",null,"Esses dados não são vendidos ou compartilhados com terceiros, exceto quando necessário para a entrega (transportadoras) ou processamento de pagamento."),React.createElement("p",null,"Você pode solicitar a exclusão dos seus dados a qualquer momento, entrando em contato pelos canais informados em Fale Conosco, conforme a Lei Geral de Proteção de Dados (LGPD)."),React.createElement("p",{className:"legal-note"},"[Texto genérico — revisar com um contador/advogado antes de publicar oficialmente]"))),
+React.createElement("div",{className:"page"+(page==="termos"?" act":""),style:{paddingTop:52}},React.createElement("div",{className:"sec legal-sec"},React.createElement("div",{className:"slabel"},"Condições de uso"),React.createElement("div",{className:"stitle"},"Termos de Uso"),React.createElement("p",null,"Ao utilizar este site, você concorda com as condições de compra, preços e prazos informados em cada produto."),React.createElement("p",null,"Os preços e a disponibilidade dos produtos podem mudar sem aviso prévio. As imagens são meramente ilustrativas."),React.createElement("p",null,"A ArenaBT se reserva o direito de cancelar pedidos em caso de erro de preço ou indisponibilidade de estoque, com reembolso integral ao cliente."),React.createElement("p",{className:"legal-note"},"[Texto genérico — revisar com um contador/advogado antes de publicar oficialmente]"))),
 cartOpen&&React.createElement("div",{className:"covl",onClick:function(e){if(e.target===e.currentTarget)setCartOpen(false);}},
 React.createElement("div",{className:"cpanel"},
 cartView==="cart"&&React.createElement("div",{style:{display:"flex",flexDirection:"column",height:"100%"}},
 React.createElement("div",{className:"chdr"},React.createElement("h2",null,"Carrinho"),React.createElement("button",{className:"cx",onClick:function(){setCartOpen(false);}},"×")),
-React.createElement("div",{className:"cbody"},cart.length===0?React.createElement("div",{className:"cempty"},"Carrinho vazio"):cart.map(function(item){return React.createElement("div",{key:item.id,className:"citem"},React.createElement("div",{className:"ciimg"},React.createElement(ProdImg,{p:item,size:36})),React.createElement("div",{className:"ciinfo"},React.createElement("div",{className:"ciname"},item.name),React.createElement("div",{className:"cibrand"},item.brand),React.createElement("div",{className:"ciprice"},"R$"+(item.price*item.qty).toLocaleString('pt-BR')),React.createElement("div",{className:"ciqty"},React.createElement("button",{className:"qb",onClick:function(){changeQty(item.id,-1);}},"−"),React.createElement("span",{className:"qn"},item.qty),React.createElement("button",{className:"qb",onClick:function(){changeQty(item.id,1);}},"+"),React.createElement("button",{className:"crm",onClick:function(){changeQty(item.id,-item.qty);}},"remover"))));})),
-cart.length>0&&React.createElement("div",{className:"cfoot"},React.createElement("div",{className:"ctrow"},React.createElement("span",null,"Total"),React.createElement("span",null,"R$"+totalPrice.toLocaleString('pt-BR'))),React.createElement("button",{className:"chkbtn",onClick:function(){setCartView("checkout");}},"Finalizar pedido →"),React.createElement("button",{className:"wabtn",onClick:handleWA},"💬 Pedir pelo WhatsApp"))
+React.createElement("div",{className:"cbody"},cart.length===0?React.createElement("div",{className:"cempty"},React.createElement("div",{style:{fontSize:40,marginBottom:10}},"🎾"),"Carrinho vazio"):cart.map(function(item){return React.createElement("div",{key:item.id,className:"citem"},React.createElement("div",{className:"ciimg"},React.createElement(ProdImg,{p:item,size:36})),React.createElement("div",{className:"ciinfo"},React.createElement("div",{className:"ciname"},item.name),React.createElement("div",{className:"cibrand"},item.brand),React.createElement("div",{className:"ciprice"},"R$"+(item.price*item.qty).toLocaleString('pt-BR')),React.createElement("div",{className:"ciqty"},React.createElement("button",{className:"qb",onClick:function(){changeQty(item.id,-1);}},"−"),React.createElement("span",{className:"qn"},item.qty),React.createElement("button",{className:"qb",onClick:function(){changeQty(item.id,1);}},"+"),React.createElement("button",{className:"crm",onClick:function(){changeQty(item.id,-item.qty);}},"remover"))));})),
+cart.length>0&&React.createElement("div",{className:"cfoot"},React.createElement("div",{className:"ctrow"},React.createElement("span",null,"Total"),React.createElement("span",null,"R$"+totalPrice.toLocaleString('pt-BR'))),React.createElement("button",{className:"chkbtn",onClick:function(){setCartView("checkout");}},"Finalizar pedido →"),React.createElement("button",{className:"wabtn",onClick:handleWA},"💬 Pedir pelo WhatsApp"),React.createElement("div",{className:"trust-badge",style:{justifyContent:"center",marginTop:10}},React.createElement(LockIcon),React.createElement("span",null,"Compra 100% segura · dados protegidos")))
 ),
 cartView==="checkout"&&React.createElement("div",{className:"chkform"},
 React.createElement("button",{className:"backlink",onClick:function(){setCartView("cart");}},"← Voltar"),
